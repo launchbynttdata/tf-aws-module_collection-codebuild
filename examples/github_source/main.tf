@@ -14,11 +14,11 @@ module "codebuild" {
   source = "../.."
 
   name                         = var.name
-  naming_prefix                = var.naming_prefix
+  logical_product_family       = var.logical_product_family
+  logical_product_service      = var.logical_product_service
   source_type                  = var.source_type
   artifact_type                = var.artifact_type
   source_location              = var.source_location
-  buildspec                    = var.buildspec
   codebuild_iam                = var.codebuild_iam
   enable_github_authentication = var.enable_github_authentication
   create_webhooks              = var.create_webhooks

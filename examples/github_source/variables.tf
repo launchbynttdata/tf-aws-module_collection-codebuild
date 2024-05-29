@@ -16,23 +16,42 @@ variable "name" {
   default     = "build"
 }
 
-
-variable "naming_prefix" {
-  description = "Prefix for the provisioned resources."
+variable "logical_product_family" {
   type        = string
-  default     = "platform"
+  description = <<EOF
+    (Required) Name of the product family for which the resource is created.
+    Example: org_name, department_name.
+  EOF
+  nullable    = false
+
+  validation {
+    condition     = can(regex("^[_\\-A-Za-z0-9]+$", var.logical_product_family))
+    error_message = "The variable must contain letters, numbers, -, _, and .."
+  }
+
+  default = "launch"
+}
+
+variable "logical_product_service" {
+  type        = string
+  description = <<EOF
+    (Required) Name of the product service for which the resource is created.
+    For example, backend, frontend, middleware etc.
+  EOF
+  nullable    = false
+
+  validation {
+    condition     = can(regex("^[_\\-A-Za-z0-9]+$", var.logical_product_service))
+    error_message = "The variable must contain letters, numbers, -, _, and .."
+  }
+
+  default = "servicename"
 }
 
 variable "codebuild_iam" {
   description = "Additional IAM actions to add to CodeBuild IAM role."
   type        = string
   default     = null
-}
-
-variable "buildspec" {
-  type        = string
-  default     = ""
-  description = "Optional buildspec declaration to use for building the project"
 }
 
 
@@ -52,12 +71,6 @@ variable "artifact_type" {
   type        = string
   default     = "CODEPIPELINE"
   description = "The build output artifact's type. Valid values for this parameter are: CODEPIPELINE, NO_ARTIFACTS or S3"
-}
-
-variable "artifact_location" {
-  type        = string
-  default     = ""
-  description = "Location of artifact. Applies only for artifact of type S3"
 }
 
 variable "github_token" {
@@ -85,12 +98,6 @@ variable "create_webhooks" {
   description = "Whether to create webhooks for Github, GitHub Enterprise or Bitbucket"
   type        = bool
   default     = false
-}
-
-variable "webhook_build_type" {
-  description = "Webhook build type. Choose between BUILD or BUILD_BATCH"
-  type        = string
-  default     = "BUILD"
 }
 
 variable "webhook_filters" {

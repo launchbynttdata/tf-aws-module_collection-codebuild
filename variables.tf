@@ -57,16 +57,19 @@ variable "environment" {
 
 variable "environment_number" {
   description = "The environment count for the respective environment. Defaults to 000. Increments in value of 1"
+  type        = string
   default     = "000"
 }
 
 variable "region" {
   description = "AWS Region in which the infra needs to be provisioned"
+  type        = string
   default     = "us-east-2"
 }
 
 variable "resource_number" {
   description = "The resource count for the respective resource. Defaults to 000. Increments in value of 1"
+  type        = string
   default     = "000"
 }
 
@@ -128,6 +131,7 @@ variable "build_compute_type" {
 
 variable "build_timeout" {
   default     = 60
+  type        = number
   description = "How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed"
 }
 
@@ -135,12 +139,6 @@ variable "build_type" {
   type        = string
   default     = "LINUX_CONTAINER"
   description = "The type of build environment, e.g. 'LINUX_CONTAINER' or 'WINDOWS_CONTAINER'"
-}
-
-variable "buildspec" {
-  type        = string
-  default     = ""
-  description = "Optional buildspec declaration to use for building the project"
 }
 
 variable "privileged_mode" {
