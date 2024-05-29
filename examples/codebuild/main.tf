@@ -13,13 +13,14 @@
 module "codebuild" {
   source = "../.."
 
-  codebuild_projects = var.codebuild_projects
-  naming_prefix      = var.naming_prefix
-  environment        = var.environment
-  environment_number = var.environment_number
-  resource_number    = var.resource_number
-  resource_names_map = var.resource_names_map
-  extra_permissions  = var.extra_permissions
+  codebuild_projects      = var.codebuild_projects
+  logical_product_family  = var.logical_product_family
+  logical_product_service = var.logical_product_service
+  environment             = var.environment
+  environment_number      = var.environment_number
+  resource_number         = var.resource_number
+  resource_names_map      = var.resource_names_map
+  extra_permissions       = var.extra_permissions
 
   tags = var.tags
 }

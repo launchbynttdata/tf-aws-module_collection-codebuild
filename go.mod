@@ -1,4 +1,4 @@
-module github.com/nexient-llc/tf-aws-wrapper_module-codebuild
+module github.com/launchbynttdata/tf-aws-module_collection-codebuild
 
 go 1.15
 

@@ -29,19 +29,3 @@ output "role_arn" {
   description = "IAM Role ARN"
   value       = module.codebuild.role_arn
 }
-
-### TF Module Resource outputs
-output "naming_prefix" {
-  description = "Prefix for the provisioned resources."
-  value       = var.naming_prefix
-}
-
-output "environment" {
-  description = "Environment in which the resource should be provisioned like dev, qa, prod etc."
-  value       = var.environment
-}
-
-output "environment_number" {
-  description = "The environment count for the respective environment. Defaults to 000. Increments in value of 1"
-  value       = var.environment_number
-}

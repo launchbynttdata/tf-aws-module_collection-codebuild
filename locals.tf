@@ -16,5 +16,6 @@ locals {
     provisioner = "Terraform"
   }
 
-  tags = merge(local.default_tags, var.tags)
+  tags          = merge(local.default_tags, var.tags)
+  naming_prefix = "${var.logical_product_family}-${var.logical_product_service}"
 }

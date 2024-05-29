@@ -11,10 +11,10 @@
 // limitations under the License.
 
 module "codebuild" {
-  source = "git::https://github.com/nexient-llc/terraform-aws-codebuild?ref=0.2.0"
+  source = "git::https://github.com/launchbynttdata/terraform-aws-codebuild"
   count  = length(var.codebuild_projects) > 1 ? length(var.codebuild_projects) : 1
 
-  project_name = replace(module.resource_names["codebuild"].standard, var.naming_prefix, "${var.naming_prefix}_${try(var.codebuild_projects[count.index].name, var.name)}")
+  project_name = replace(module.resource_names["codebuild"].standard, local.naming_prefix, "${local.naming_prefix}_${try(var.codebuild_projects[count.index].name, var.name)}")
   description  = var.description
 
   artifact_location  = try(var.codebuild_projects[count.index].artifact_location, var.artifact_location)
@@ -46,19 +46,20 @@ module "codebuild" {
   webhook_filters    = try(var.codebuild_projects[count.index].webhook_filters, var.webhook_filters)
   webhook_build_type = try(var.codebuild_projects[count.index].webhook_build_type, var.webhook_build_type)
 
-  tags = merge(local.tags, { resource_name = replace(module.resource_names["codebuild"].standard, var.naming_prefix, "${var.naming_prefix}_${try(var.codebuild_projects[count.index].name, var.name)}") })
+  tags = merge(local.tags, { resource_name = replace(module.resource_names["codebuild"].standard, local.naming_prefix, "${local.naming_prefix}_${try(var.codebuild_projects[count.index].name, var.name)}") })
 }
 
 module "resource_names" {
-  source = "git::https://github.com/nexient-llc/tf-module-resource_name?ref=0.1.0"
+  source = "git::https://github.com/launchbynttdata/tf-launch-module_library-resource_name?ref=1.0.0"
 
   for_each = var.resource_names_map
 
-  logical_product_name = var.naming_prefix
-  region               = join("", split("-", var.region))
-  class_env            = var.environment
-  cloud_resource_type  = each.value.name
-  instance_env         = var.environment_number
-  instance_resource    = var.resource_number
-  maximum_length       = each.value.max_length
+  logical_product_family  = var.logical_product_family
+  logical_product_service = var.logical_product_service
+  region                  = join("", split("-", var.region))
+  class_env               = var.environment
+  cloud_resource_type     = each.value.name
+  instance_env            = var.environment_number
+  instance_resource       = var.resource_number
+  maximum_length          = each.value.max_length
 }
