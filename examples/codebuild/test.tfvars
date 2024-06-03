@@ -1,10 +1,12 @@
 
-extra_permissions = ["s3:*"]
+logical_product_family  = "terratest"
+logical_product_service = "codebuild"
+extra_permissions       = ["s3:*"]
 codebuild_projects = [
   {
     name          = "plan"
     buildspec     = "buildspec.yml"
-    source_type   = "S3"
+    artifact_type = "NO_ARTIFACTS"
     codebuild_iam = <<EOF
 {
     "Version": "2012-10-17",
@@ -25,7 +27,7 @@ EOF
   {
     name          = "deploy"
     buildspec     = "buildspec.yml"
-    source_type   = "S3"
+    artifact_type = "NO_ARTIFACTS"
     codebuild_iam = <<EOF
 {
     "Version": "2012-10-17",
