@@ -11,7 +11,7 @@
 // limitations under the License.
 
 module "codebuild" {
-  source = "git::https://github.com/launchbynttdata/terraform-aws-codebuild?ref=0a8a00d"
+  source = "git::https://github.com/launchbynttdata/terraform-aws-codebuild?ref=1.0.0"
   count  = length(var.codebuild_projects) > 1 ? length(var.codebuild_projects) : 1
 
   project_name = replace(module.resource_names["codebuild"].standard, local.naming_prefix, "${local.naming_prefix}_${try(var.codebuild_projects[count.index].name, var.name)}")
