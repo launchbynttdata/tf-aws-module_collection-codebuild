@@ -3,21 +3,29 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.57.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.51.1 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_s3_source_bucket"></a> [s3\_source\_bucket](#module\_s3\_source\_bucket) | git::https://github.com/launchbynttdata/tf-aws-module_collection-s3_bucket | 1.0.0 |
 | <a name="module_codebuild"></a> [codebuild](#module\_codebuild) | ../.. | n/a |
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [aws_s3_object.dummy_source_object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object) | resource |
 
 ## Inputs
 

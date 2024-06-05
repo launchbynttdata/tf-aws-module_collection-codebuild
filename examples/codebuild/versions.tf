@@ -10,22 +10,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-output "project_name" {
-  description = "Project name"
-  value       = module.codebuild.project_name
-}
+terraform {
+  required_version = ">= 1.5.0, <= 1.5.5"
 
-output "project_id" {
-  description = "Project ID"
-  value       = module.codebuild.project_id
-}
-
-output "role_id" {
-  description = "IAM Role ID"
-  value       = module.codebuild.role_id
-}
-
-output "role_arn" {
-  description = "IAM Role ARN"
-  value       = module.codebuild.role_arn
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }

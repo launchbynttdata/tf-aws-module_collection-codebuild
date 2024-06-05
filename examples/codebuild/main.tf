@@ -10,6 +10,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+module "s3_source_bucket" {
+  source = "git::https://github.com/launchbynttdata/tf-aws-module_collection-s3_bucket?ref=1.0.0"
+
+  logical_product_family  = var.logical_product_family
+  logical_product_service = var.logical_product_service
+
+  use_default_server_side_encryption = true
+
+  enable_versioning = true
+}
+
+resource "aws_s3_object" "dummy_source_object" {
+  bucket = module.s3_source_bucket.id
+  key    = "dummysource.zip"
+  source = "dummysource.zip"
+}
+
 module "codebuild" {
   source = "../.."
 
@@ -18,6 +35,8 @@ module "codebuild" {
   logical_product_service = var.logical_product_service
   environment             = var.environment
   environment_number      = var.environment_number
+  source_type             = "S3"
+  source_location         = "${module.s3_source_bucket.id}/${aws_s3_object.dummy_source_object.key}"
   resource_number         = var.resource_number
   resource_names_map      = var.resource_names_map
   extra_permissions       = var.extra_permissions
