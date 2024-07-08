@@ -5,6 +5,7 @@ extra_permissions       = ["s3:*"]
 codebuild_projects = [
   {
     name          = "plan"
+    description   = "Terraform Plan"
     buildspec     = "buildspec.yml"
     artifact_type = "NO_ARTIFACTS"
     codebuild_iam = <<EOF
@@ -26,6 +27,7 @@ EOF
   },
   {
     name          = "deploy"
+    description   = "Terraform Deploy"
     buildspec     = "buildspec.yml"
     artifact_type = "NO_ARTIFACTS"
     codebuild_iam = <<EOF

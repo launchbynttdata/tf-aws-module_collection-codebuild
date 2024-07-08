@@ -15,7 +15,7 @@ module "codebuild" {
   count  = length(var.codebuild_projects) > 1 ? length(var.codebuild_projects) : 1
 
   project_name = replace(module.resource_names["codebuild"].standard, local.naming_prefix, "${local.naming_prefix}_${try(var.codebuild_projects[count.index].name, var.name)}")
-  description  = var.description
+  description  = try(var.codebuild_projects[count.index].description, var.description)
 
   artifact_location  = try(var.codebuild_projects[count.index].artifact_location, var.artifact_location)
   artifact_type      = try(var.codebuild_projects[count.index].artifact_type, var.artifact_type)
