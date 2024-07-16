@@ -11,7 +11,8 @@
 // limitations under the License.
 
 module "s3_source_bucket" {
-  source = "git::https://github.com/launchbynttdata/tf-aws-module_collection-s3_bucket?ref=1.0.0"
+  source  = "terraform.registry.launch.nttdata.com/module_collection/s3_bucket/aws"
+  version = "~> 1.0"
 
   logical_product_family  = var.logical_product_family
   logical_product_service = var.logical_product_service
