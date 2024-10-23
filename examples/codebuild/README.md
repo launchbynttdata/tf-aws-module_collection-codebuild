@@ -5,20 +5,20 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.57.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.51.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.72.1 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_s3_source_bucket"></a> [s3\_source\_bucket](#module\_s3\_source\_bucket) | git::https://github.com/launchbynttdata/tf-aws-module_collection-s3_bucket | 1.0.0 |
+| <a name="module_s3_source_bucket"></a> [s3\_source\_bucket](#module\_s3\_source\_bucket) | terraform.registry.launch.nttdata.com/module_collection/s3_bucket/aws | ~> 1.0 |
 | <a name="module_codebuild"></a> [codebuild](#module\_codebuild) | ../.. | n/a |
 
 ## Resources
